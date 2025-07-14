@@ -1,0 +1,6 @@
+<!--pages/statistics/statistics.wxml-->
+<text>pages/statistics/statistics.wxml</text>
+<view class="container">
+  <text>📊 本月任务完成率：</text>
+  <progress percent="70" show-info stroke-width="8" />
+</view>

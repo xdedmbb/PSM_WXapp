@@ -1,0 +1,51 @@
+{
+  "pages": [
+    "pages/login/login",
+    "pages/dashboard/dashboard",
+    "pages/taskOp/taskOp",
+    "pages/calendar/calendar",
+    "pages/user/user",
+    "pages/statistics/statistics"
+  ],
+  "window": {
+    "navigationBarBackgroundColor": "#ffffff",
+    "navigationBarTextStyle": "black",
+    "navigationBarTitleText": "事务提醒系统",
+    "backgroundColor": "#f5f5f5",
+    "backgroundTextStyle": "light"
+  },
+  "tabBar": {
+    "color": "#888888",
+    "selectedColor": "#1aad19",
+    "backgroundColor": "#ffffff",
+    "borderStyle": "black",
+    "list": [
+      {
+        "pagePath": "pages/dashboard/dashboard",
+        "text": "首页",
+        "iconPath": "assets/tab/home.png",
+        "selectedIconPath": "assets/tab/home_active.png"
+      },
+      {
+        "pagePath": "pages/calendar/calendar",
+        "text": "日历",
+        "iconPath": "assets/tab/calendar.png",
+        "selectedIconPath": "assets/tab/calendar_active.png"
+      },
+      {
+        "pagePath": "pages/statistics/statistics",
+        "text": "统计",
+        "iconPath": "assets/tab/stats.png",
+        "selectedIconPath": "assets/tab/stats_active.png"
+      },
+      {
+        "pagePath": "pages/user/user",
+        "text": "我的",
+        "iconPath": "assets/tab/user.png",
+        "selectedIconPath": "assets/tab/user_active.png"
+      }
+    ]
+  },
+  "style": "v2",
+  "sitemapLocation": "sitemap.json"
+}

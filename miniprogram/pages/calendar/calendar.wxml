@@ -1,0 +1,12 @@
+<!-- /pages/calendar/calendar.wxml -->
+<view class="calendar-page">
+    <calendar bind:select="onDayClick" bind:longpress="onDayLongPress" />
+
+    <task-list tasks="{{taskList}}" layout="double" showDesc="{{false}}" />
+
+
+    <modal visible="{{showModal}}" 
+            bind:cancel="onCancel" 
+            bind:confirm="onAddTask"
+            selectedDate="{{selectedDate}}" />
+</view>

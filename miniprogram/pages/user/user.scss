@@ -1,0 +1,18 @@
+/* pages/user/user.wxss */
+.container {
+    padding: 40rpx;
+    text-align: center;
+  
+    .avatar {
+      width: 160rpx;
+      height: 160rpx;
+      border-radius: 80rpx;
+      margin: 20rpx auto;
+    }
+  
+    .nickname {
+      font-size: 34rpx;
+      margin-bottom: 30rpx;
+    }
+  }
+  

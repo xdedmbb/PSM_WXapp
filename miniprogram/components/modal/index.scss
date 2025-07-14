@@ -1,0 +1,39 @@
+.modal-mask {
+    position: fixed;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background-color: rgba(0,0,0,0.4);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 999;
+  }
+  
+  .modal-container {
+    background: #fff;
+    border-radius: 12rpx;
+    width: 80%;
+    padding: 32rpx;
+  }
+  
+  .modal-header {
+    font-size: 36rpx;
+    font-weight: bold;
+    margin-bottom: 24rpx;
+  }
+  
+  .modal-input {
+    border: 1px solid #ccc;
+    border-radius: 8rpx;
+    padding: 16rpx;
+    margin-bottom: 24rpx;
+  }
+  
+  .modal-footer {
+    display: flex;
+    justify-content: space-between;
+  }
+  
+  .btn {
+    width: 45%;
+  }
+  

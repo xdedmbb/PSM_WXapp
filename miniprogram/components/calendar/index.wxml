@@ -1,0 +1,19 @@
+<view class="calendar-container">
+  <view class="calendar-header">
+    <view>{{year}}年{{month + 1}}月</view>
+  </view>
+
+  <view class="calendar-grid">
+    <view class="day-name" wx:for="{{weekDays}}" wx:key="index">{{item}}</view>
+
+    <view
+      class="day-cell {{selectedDate === item.dateString ? 'selected' : ''}}"
+      wx:for="{{days}}" wx:key="index"
+      data-date="{{item.dateString}}"
+      bindtap="onDateSelect"
+      bindlongpress="onDateLongPress"
+    >
+      {{item.day}}
+    </view>
+  </view>
+</view>

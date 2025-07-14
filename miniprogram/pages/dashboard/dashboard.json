@@ -1,0 +1,7 @@
+{
+    "navigationBarTitleText": "任务一览",
+    "usingComponents": {
+        "task-list": "/components/task-list/index"
+      }
+  }
+  

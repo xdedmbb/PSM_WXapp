@@ -1,0 +1,23 @@
+/* pages/login/login.scss */
+.login-page {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    background: #f2f2f2;
+    padding: 20px;
+  
+    .title {
+      font-size: 24px;
+      margin-bottom: 50px;
+      color: #333;
+    }
+  
+    .login-btn {
+      width: 80%;
+      font-size: 18px;
+      border-radius: 10px;
+    }
+  }
+  

@@ -1,0 +1,14 @@
+/* pages/taskOp/taskOp.wxss */
+.container {
+    padding: 20px;
+    input, textarea, picker, button {
+      margin-bottom: 15px;
+    }
+    button {
+      background-color: #1aad19;
+      color: white;
+      height: 40px;
+      border-radius: 4px;
+    }
+  }
+  

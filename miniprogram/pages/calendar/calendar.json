@@ -1,0 +1,9 @@
+{
+    "usingComponents": {
+      "calendar": "/components/calendar/index",
+      "task-list": "/components/task-list/index",
+      "modal": "/components/modal/index"
+    },
+    "navigationBarTitleText": "日历"
+  }
+  

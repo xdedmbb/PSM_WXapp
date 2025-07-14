@@ -1,0 +1,10 @@
+<view class="modal-mask" wx:if="{{visible}}">
+  <view class="modal-container">
+    <view class="modal-header">添加任务</view>
+    <input class="modal-input" placeholder="请输入任务标题" bindinput="onInput" />
+    <view class="modal-footer">
+      <button class="btn cancel" bindtap="onCancel">取消</button>
+      <button class="btn confirm" bindtap="onConfirm">确定</button>
+    </view>
+  </view>
+</view>
