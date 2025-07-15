@@ -1,12 +1,12 @@
-<!-- pages/login/login.wxml -->
 <view class="login-page">
   <view class="title">欢迎使用事务管理系统</view>
+
+  <!-- 微信登录按钮 -->
   <button
     class="login-btn"
     type="primary"
     loading="{{isLoading}}"
-    open-type="getUserInfo"
-    bindtap="onGetUserInfo"
+    bindtap="onLogin"
   >
     微信一键登录
   </button>

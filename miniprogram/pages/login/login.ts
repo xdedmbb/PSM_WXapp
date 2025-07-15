@@ -3,62 +3,61 @@ Page({
       isLoading: false
     },
   
-    onLoad() {
-      console.log("登录页面加载")
-    },
-  
-    onGetUserInfo() {
+    onLogin() {
       this.setData({ isLoading: true })
   
-      // Step 1：获取用户头像与昵称
       wx.getUserProfile({
         desc: '用于完善用户信息',
         success: profileRes => {
           const { nickName, avatarUrl } = profileRes.userInfo
   
-          // Step 2：获取微信 code
           wx.login({
             success: res => {
               const code = res.code
               if (!code) {
-                wx.showToast({ title: '获取登录凭证失败', icon: 'none' })
+                wx.showToast({ title: '获取code失败', icon: 'none' })
                 this.setData({ isLoading: false })
                 return
               }
   
-              console.log("code:", code)
-              console.log("昵称:", nickName)
-              console.log("头像:", avatarUrl)
-              wx.showToast({ title: '登录成功' })
-              wx.switchTab({ url: '/pages/dashboard/dashboard' }) // 跳转首页
-
-            //   // Step 3：发送到后端
-            //   wx.request({
-            //     url: 'http://localhost:9663/api/user/wxLogin',
-            //     // 192.168.1.71/localhost
-            //     method: 'POST',
-            //     data: {
-            //       code,
-            //       nickname: nickName,
-            //       avatarUrl: avatarUrl
-            //     },
-            //     success: res => {
-            //       const { token, user } = res.data.data
-            //       wx.setStorageSync('token', token)
-            //       wx.setStorageSync('user', user)
-            //       wx.showToast({ title: '登录成功' })
-            //       wx.switchTab({ url: '/pages/dashboard/dashboard' }) // 跳转首页
-            //     },
-            //     fail: () => {
-            //       wx.showToast({ title: '登录失败', icon: 'none' })
-            //     },
-            //     complete: () => {
-            //       this.setData({ isLoading: false })
-            //     }
-            //   })
+              wx.request({
+                url: 'http://192.168.1.71:9663/api/user/wxLogin',
+                method: 'POST',
+                data: {
+                  code,
+                  nickname: nickName,
+                  avatarUrl
+                },
+                success: (res) => {
+                  if (res.data && res.data.code === 200 && res.data.data) {
+                    const { token, user } = res.data.data
+                    if (token) {
+                      wx.setStorageSync('token', token)
+                    } else {
+                      wx.removeStorageSync('token')
+                    }
+                    if (user) {
+                      wx.setStorageSync('user', user)
+                    }
+                    wx.showToast({ title: '登录成功' })
+                    wx.switchTab({ url: '/pages/dashboard/dashboard' })
+                  } else {
+                    wx.removeStorageSync('token')
+                    wx.showToast({ title: (res.data && res.data.message) ? res.data.message : '登录失败'
+                    , icon: 'none' })
+                  }
+                },
+                fail: () => {
+                  wx.removeStorageSync('token')
+                  wx.showToast({ title: '登录失败', icon: 'error' })
+                },
+                complete: () => {
+                  this.setData({ isLoading: false })
+                }
+              })
             },
             fail: () => {
-              wx.showToast({ title: '获取code失败', icon: 'none' })
+              wx.showToast({ title: '获取登录凭证失败', icon: 'none' })
               this.setData({ isLoading: false })
             }
           })

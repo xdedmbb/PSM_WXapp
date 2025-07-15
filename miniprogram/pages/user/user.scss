@@ -1,39 +1,18 @@
-.user-container {
+.user-info {
     display: flex;
-    flex-direction: column;
     align-items: center;
-    padding: 40rpx;
+    padding: 20rpx;
   
-    .avatar-button {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      border: none;
-      background: none;
-  
-      .avatar {
-        width: 160rpx;
-        height: 160rpx;
-        border-radius: 50%;
-        margin-bottom: 20rpx;
-      }
-  
-      .nickname {
-        font-size: 32rpx;
-        color: #333;
-      }
+    .avatar {
+      width: 80rpx;
+      height: 80rpx;
+      border-radius: 40rpx;
+      margin-right: 20rpx;
     }
   
-    .save-button {
-      margin-top: 60rpx;
-      width: 80%;
-      height: 80rpx;
-      line-height: 80rpx;
-      font-size: 32rpx;
-      color: white;
-      background-color: #007aff;
-      border-radius: 12rpx;
-      text-align: center;
+    .nickname {
+      font-size: 28rpx;
+      color: #333;
     }
   }
   

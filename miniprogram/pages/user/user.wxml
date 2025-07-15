@@ -1,9 +1,4 @@
-<view class="container">
-  <!-- 点击授权头像和昵称 -->
-  <button class="avatar-wrapper" bindtap="onAuthorizeUser">
-    <image class="avatar" src="{{avatarUrl}}" />
-  </button>
-
-  <!-- 显示昵称 -->
-  <view class="nickname">{{nickname || '点击头像获取微信信息'}}</view>
+<view class="user-info">
+  <image class="avatar" src="{{user.avatarUrl}}" mode="aspectFill" />
+  <text class="nickname">{{user.nickname}}</text>
 </view>
