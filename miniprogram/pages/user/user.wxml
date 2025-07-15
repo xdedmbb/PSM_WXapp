@@ -1,7 +1,10 @@
-<!--pages/user/user.wxml-->
-<text>pages/user/user.wxml</text>
+<!-- pages/user/user.wxml -->
 <view class="container">
-  <image class="avatar" src="{{user.avatarUrl}}" mode="aspectFill" />
-  <view class="nickname">{{user.nickname}}</view>
-  <button open-type="getUserInfo" bindtap="logout">退出登录</button>
+  <button open-type="chooseAvatar" bind:chooseavatar="onChooseAvatar" class="avatar-btn">
+    <image src="{{avatarUrl}}" class="avatar" mode="aspectFill" />
+  </button>
+
+  <input type="nickname" placeholder="请输入昵称" class="nickname-input" value="{{nickname}}" bindinput="onNicknameInput" />
+
+  <button bindtap="onSaveUserProfile">保存信息</button>
 </view>
