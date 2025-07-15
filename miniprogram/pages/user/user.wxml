@@ -1,10 +1,9 @@
-<!-- pages/user/user.wxml -->
 <view class="container">
-  <button open-type="chooseAvatar" bind:chooseavatar="onChooseAvatar" class="avatar-btn">
-    <image src="{{avatarUrl}}" class="avatar" mode="aspectFill" />
+  <!-- 点击授权头像和昵称 -->
+  <button class="avatar-wrapper" bindtap="onAuthorizeUser">
+    <image class="avatar" src="{{avatarUrl}}" />
   </button>
 
-  <input type="nickname" placeholder="请输入昵称" class="nickname-input" value="{{nickname}}" bindinput="onNicknameInput" />
-
-  <button bindtap="onSaveUserProfile">保存信息</button>
+  <!-- 显示昵称 -->
+  <view class="nickname">{{nickname || '点击头像获取微信信息'}}</view>
 </view>

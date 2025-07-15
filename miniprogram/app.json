@@ -5,7 +5,8 @@
     "pages/taskOp/taskOp",
     "pages/calendar/calendar",
     "pages/user/user",
-    "pages/statistics/statistics"
+    "pages/statistics/statistics",
+    "pages/tag/tag"
   ],
   "window": {
     "navigationBarBackgroundColor": "#ffffff",
@@ -33,10 +34,10 @@
         "selectedIconPath": "assets/tab/calendar_active.png"
       },
       {
-        "pagePath": "pages/statistics/statistics",
-        "text": "统计",
-        "iconPath": "assets/tab/stats.png",
-        "selectedIconPath": "assets/tab/stats_active.png"
+        "pagePath": "pages/tag/tag",
+        "text": "标签",
+        "iconPath": "assets/tab/tag.png",
+        "selectedIconPath": "assets/tab/tag_active.png"
       },
       {
         "pagePath": "pages/user/user",

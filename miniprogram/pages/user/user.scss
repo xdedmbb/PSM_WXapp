@@ -1,21 +1,39 @@
-.container {
+.user-container {
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding: 60rpx 20rpx;
-  }
+    padding: 40rpx;
   
-  .avatar {
-    width: 150rpx;
-    height: 150rpx;
-    border-radius: 50%;
-    margin-bottom: 30rpx;
-    box-shadow: 0 0 10rpx rgba(0,0,0,0.2);
-  }
+    .avatar-button {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      border: none;
+      background: none;
   
-  .nickname {
-    font-size: 36rpx;
-    font-weight: bold;
-    margin-bottom: 60rpx;
+      .avatar {
+        width: 160rpx;
+        height: 160rpx;
+        border-radius: 50%;
+        margin-bottom: 20rpx;
+      }
+  
+      .nickname {
+        font-size: 32rpx;
+        color: #333;
+      }
+    }
+  
+    .save-button {
+      margin-top: 60rpx;
+      width: 80%;
+      height: 80rpx;
+      line-height: 80rpx;
+      font-size: 32rpx;
+      color: white;
+      background-color: #007aff;
+      border-radius: 12rpx;
+      text-align: center;
+    }
   }
   

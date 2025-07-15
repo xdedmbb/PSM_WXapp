@@ -6,6 +6,22 @@
     font-size: 32rpx;
     text-align: center;
     margin-bottom: 20rpx;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .btn-prev,
+  .btn-next {
+    padding: 10rpx 20rpx;
+    background-color: #f5f5f5;
+    border-radius: 12rpx;
+    cursor: pointer;
+  }
+  
+  .btn-prev:hover,
+  .btn-next:hover {
+    background-color: #e0e0e0;
   }
   
   .calendar-grid {
@@ -34,3 +50,95 @@
     font-weight: bold;
   }
   
+  .day-cell.today {
+    background-color: #ffd700;
+    color: white;
+    font-weight: bold;
+  }
+  
+  .task-list-container {
+    margin-top: 30rpx;
+    padding: 20rpx;
+    background-color: #fff;
+    border-radius: 12rpx;
+    box-shadow: 0 2rpx 8rpx rgba(0, 0, 0, 0.1);
+  }
+  
+  .section-title {
+    font-size: 32rpx;
+    font-weight: bold;
+    margin-bottom: 20rpx;
+    color: #333;
+  }
+  
+  .task-card {
+    position: relative;
+    padding: 20rpx;
+    margin-bottom: 20rpx;
+    border-radius: 12rpx;
+    background-color: #f8f9fa;
+    box-shadow: 0 2rpx 6rpx rgba(0, 0, 0, 0.05);
+  }
+  
+  .task-title {
+    font-size: 30rpx;
+    font-weight: bold;
+    margin-bottom: 10rpx;
+  }
+  
+  .task-desc {
+    font-size: 26rpx;
+    color: #666;
+    margin-bottom: 10rpx;
+  }
+  
+  .task-datetime {
+    font-size: 24rpx;
+    color: #999;
+    margin-bottom: 10rpx;
+  }
+  
+  .task-category {
+    font-size: 24rpx;
+    color: #666;
+    margin-bottom: 10rpx;
+  }
+  
+  .task-actions {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 15rpx;
+  }
+  
+  .task-status {
+    display: inline-block;
+    padding: 6rpx 15rpx;
+    border-radius: 20rpx;
+    font-size: 24rpx;
+  }
+  
+  .task-status.completed {
+    background-color: #e8f5e9;
+    color: #4caf50;
+  }
+  
+  .task-status.uncompleted {
+    background-color: #ffebee;
+    color: #f44336;
+  }
+  
+  .edit-btn {
+    padding: 6rpx 15rpx;
+    background-color: #1976d2;
+    color: white;
+    border-radius: 20rpx;
+    font-size: 24rpx;
+  }
+  
+  .empty-tip {
+    font-size: 28rpx;
+    color: #999;
+    text-align: center;
+    padding: 30rpx;
+  }

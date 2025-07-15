@@ -29,31 +29,33 @@ Page({
               console.log("code:", code)
               console.log("昵称:", nickName)
               console.log("头像:", avatarUrl)
-  
-              // Step 3：发送到后端
-              wx.request({
-                url: 'http://192.168.1.71:9663/api/user/wxLogin',
-                // 192.168.1.71/localhost
-                method: 'POST',
-                data: {
-                  code,
-                  nickname: nickName,
-                  avatarUrl: avatarUrl
-                },
-                success: res => {
-                  const { token, user } = res.data.data
-                  wx.setStorageSync('token', token)
-                  wx.setStorageSync('user', user)
-                  wx.showToast({ title: '登录成功' })
-                  wx.switchTab({ url: '/pages/dashboard/dashboard' }) // 跳转首页
-                },
-                fail: () => {
-                  wx.showToast({ title: '登录失败', icon: 'none' })
-                },
-                complete: () => {
-                  this.setData({ isLoading: false })
-                }
-              })
+              wx.showToast({ title: '登录成功' })
+              wx.switchTab({ url: '/pages/dashboard/dashboard' }) // 跳转首页
+
+            //   // Step 3：发送到后端
+            //   wx.request({
+            //     url: 'http://localhost:9663/api/user/wxLogin',
+            //     // 192.168.1.71/localhost
+            //     method: 'POST',
+            //     data: {
+            //       code,
+            //       nickname: nickName,
+            //       avatarUrl: avatarUrl
+            //     },
+            //     success: res => {
+            //       const { token, user } = res.data.data
+            //       wx.setStorageSync('token', token)
+            //       wx.setStorageSync('user', user)
+            //       wx.showToast({ title: '登录成功' })
+            //       wx.switchTab({ url: '/pages/dashboard/dashboard' }) // 跳转首页
+            //     },
+            //     fail: () => {
+            //       wx.showToast({ title: '登录失败', icon: 'none' })
+            //     },
+            //     complete: () => {
+            //       this.setData({ isLoading: false })
+            //     }
+            //   })
             },
             fail: () => {
               wx.showToast({ title: '获取code失败', icon: 'none' })

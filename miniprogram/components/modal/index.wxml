@@ -1,10 +1,67 @@
-<view class="modal-mask" wx:if="{{visible}}">
-  <view class="modal-container">
-    <view class="modal-header">添加任务</view>
-    <input class="modal-input" placeholder="请输入任务标题" bindinput="onInput" />
-    <view class="modal-footer">
-      <button class="btn cancel" bindtap="onCancel">取消</button>
-      <button class="btn confirm" bindtap="onConfirm">确定</button>
+<view wx:if="{{visible}}" class="modal-mask">
+    <view class="modal-container">
+        <view class="modal-header">
+            {{editingTaskId ? '编辑任务' : '添加任务'}} - {{selectedDate}}
+        </view>
+
+        <view class="modal-body">
+            <input
+                placeholder="输入任务名称"
+                bindinput="onInputChange"
+                value="{{title}}"
+                data-field="title"
+                focus="{{visible}}"
+            />
+            <textarea
+                placeholder="任务描述"
+                data-field="description"
+                bindinput="onInputChange"
+                value="{{description}}"
+            ></textarea>
+            
+            <view class="time-picker-group">
+                <picker mode="date" bindchange="onInputChange" data-field="startDate">
+                    <view class="picker-label">开始日期: {{startDate || '请选择'}}</view>
+                </picker>
+                <picker mode="time" bindchange="onInputChange" data-field="startTime">
+                    <view class="picker-label">开始时间: {{startTime || '请选择'}}</view>
+                </picker>
+            </view>
+            
+            <view class="time-picker-group">
+                <picker mode="date" bindchange="onInputChange" data-field="endDate">
+                    <view class="picker-label">结束日期: {{endDate || '请选择'}}</view>
+                </picker>
+                <picker mode="time" bindchange="onInputChange" data-field="endTime">
+                    <view class="picker-label">结束时间: {{endTime || '请选择'}}</view>
+                </picker>
+            </view>
+            
+            <picker mode="selector" bindchange="onInputChange" data-field="category" range="{{categories}}">
+                <view class="picker-label">分类: {{category || '请选择'}}</view>
+            </picker>
+            
+            <view class="status-toggle">
+                <view 
+                    class="toggle-item {{!completed ? 'active' : ''}}" 
+                    bindtap="toggleStatus"
+                >
+                    未完成
+                </view>
+                <view 
+                    class="toggle-item {{completed ? 'active' : ''}}" 
+                    bindtap="toggleStatus"
+                >
+                    已完成
+                </view>
+            </view>
+        </view>
+
+        <view class="modal-footer">
+            <button class="btn-cancel" bindtap="onCancel">取消</button>
+            <button class="btn-confirm" bindtap="onConfirm">
+                {{editingTaskId ? '保存' : '添加'}}
+            </button>
+        </view>
     </view>
-  </view>
 </view>

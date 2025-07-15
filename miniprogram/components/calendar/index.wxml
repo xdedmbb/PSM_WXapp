@@ -1,19 +1,47 @@
 <view class="calendar-container">
   <view class="calendar-header">
+    <view bindtap="prevMonth" class="btn-prev">上一月</view>
     <view>{{year}}年{{month + 1}}月</view>
+    <view bindtap="nextMonth" class="btn-next">下一月</view>
   </view>
 
   <view class="calendar-grid">
     <view class="day-name" wx:for="{{weekDays}}" wx:key="index">{{item}}</view>
-
     <view
-      class="day-cell {{selectedDate === item.dateString ? 'selected' : ''}}"
+      class="day-cell {{selectedDate === item.dateString && item.dateString? 'selected' : ''}} {{today === item.dateString? 'today' : ''}}"
       wx:for="{{days}}" wx:key="index"
       data-date="{{item.dateString}}"
-      bindtap="onDateSelect"
-      bindlongpress="onDateLongPress"
+      bindlongpress="handleDayLongPress"
+      bindtap="handleDayClick"
     >
       {{item.day}}
+    </view>
+  </view>
+  
+  <view class="task-list-container">
+    <view class="section-title">{{selectedDate}}的任务</view>
+    <view wx:if="{{selectedDateTasks.length > 0}}">
+      <block wx:for="{{selectedDateTasks}}" wx:key="id">
+        <view class="task-card" data-id="{{item.id}}">
+          <view class="task-title">{{item.title}}</view>
+          <view class="task-desc" wx:if="{{item.description}}">{{item.description}}</view>
+          <view class="task-datetime" wx:if="{{item.startTime || item.endTime}}">
+            {{item.startTime}} {{item.endTime ? ' - ' + item.endTime : ''}}
+          </view>
+          <view class="task-category" wx:if="{{item.category}}">分类: {{item.category}}</view>
+          
+          <view class="task-actions">
+            <view class="task-status {{item.completed ? 'completed' : 'uncompleted'}}">
+              {{item.completed ? '已完成' : '未完成'}}
+            </view>
+            <view class="edit-btn" bindtap="editTask" data-id="{{item.id}}">编辑</view>
+            <view class="delete-btn" bindtap="deleteTask" data-id="{{item.id}}">删除</view>
+          </view>
+        </view>
+      </block>
+    </view>
+    <view wx:else class="empty-tip">
+      暂无任务，长按日期添加任务
     </view>
   </view>
 </view>

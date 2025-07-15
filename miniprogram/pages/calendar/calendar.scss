@@ -2,16 +2,256 @@
     padding: 20rpx;
   }
   
-  .selected-date {
-    font-size: 28rpx;
+  .calendar-header {
+    font-size: 32rpx;
+    text-align: center;
+    margin-bottom: 20rpx;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .btn-prev,
+  .btn-next {
+    padding: 10rpx 20rpx;
+    background-color: #f5f5f5;
+    border-radius: 12rpx;
+  }
+  
+  .btn-prev:hover,
+  .btn-next:hover {
+    background-color: #e0e0e0;
+  }
+  
+  .calendar-grid {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 10rpx;
+  }
+  
+  .day-name {
     font-weight: bold;
+    text-align: center;
+    color: #888;
+  }
+  
+  .day-cell {
+    height: 80rpx;
+    text-align: center;
+    line-height: 80rpx;
+    background-color: #f5f5f5;
+    border-radius: 12rpx;
+  }
+  
+  .day-cell.selected {
+    background-color: #007aff;
+    color: white;
+    font-weight: bold;
+  }
+  
+  .day-cell.today {
+    background-color: #ffd700;
+    color: white;
+    font-weight: bold;
+  }
+  
+  .task-list-container {
+    margin-top: 30rpx;
+    padding: 20rpx;
+    background-color: #fff;
+    border-radius: 12rpx;
+    box-shadow: 0 2rpx 8rpx rgba(0, 0, 0, 0.1);
+  }
+  
+  .section-title {
+    font-size: 32rpx;
+    font-weight: bold;
+    margin-bottom: 20rpx;
+    color: #333;
+  }
+  
+  .task-card {
+    position: relative;
+    padding: 20rpx;
+    margin-bottom: 20rpx;
+    border-radius: 12rpx;
+    background-color: #f8f9fa;
+    box-shadow: 0 2rpx 6rpx rgba(0, 0, 0, 0.05);
+  }
+  
+  .task-title {
+    font-size: 30rpx;
+    font-weight: bold;
+    margin-bottom: 10rpx;
+  }
+  
+  .task-desc {
+    font-size: 26rpx;
+    color: #666;
+    margin-bottom: 10rpx;
+  }
+  
+  .task-datetime {
+    font-size: 24rpx;
+    color: #999;
+    margin-bottom: 10rpx;
+  }
+  
+  .task-category {
+    font-size: 24rpx;
+    color: #666;
+    margin-bottom: 10rpx;
+  }
+  
+  .task-actions {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 15rpx;
+  }
+  
+  .task-status {
+    display: inline-block;
+    padding: 6rpx 15rpx;
+    border-radius: 20rpx;
+    font-size: 24rpx;
+  }
+  
+  .task-status.completed {
+    background-color: #e8f5e9;
+    color: #4caf50;
+  }
+  
+  .task-status.uncompleted {
+    background-color: #ffebee;
+    color: #f44336;
+  }
+  
+  .edit-btn,
+  .delete-btn {
+    padding: 6rpx 15rpx;
+    border-radius: 20rpx;
+    font-size: 24rpx;
+  }
+  
+  .edit-btn {
+    background-color: #1976d2;
+    color: white;
+  }
+  
+  .delete-btn {
+    background-color: #ff3b30;
+    color: white;
+  }
+  
+  .empty-tip {
+    font-size: 28rpx;
+    color: #999;
+    text-align: center;
+    padding: 30rpx;
+  }
+  
+  .modal-mask {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+  }
+  
+  .modal-container {
+    width: 85%;
+    background-color: #fff;
+    border-radius: 12rpx;
+    padding: 30rpx;
+  }
+  
+  .modal-header {
+    font-size: 32rpx;
+    font-weight: bold;
+    margin-bottom: 20rpx;
+    text-align: center;
+  }
+  
+  .modal-body input,
+  .modal-body textarea,
+  .modal-body picker {
+    width: 100%;
+    padding: 20rpx;
+    margin-bottom: 20rpx;
+    border: 1rpx solid #ddd;
+    border-radius: 8rpx;
+    font-size: 28rpx;
+  }
+  
+  .time-picker-group {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20rpx;
+  }
+  
+  .time-picker-group > picker {
+    width: 48%;
+  }
+  
+  .picker-label {
+    padding: 20rpx;
+    background-color: #f9f9f9;
+    border-radius: 8rpx;
+    font-size: 28rpx;
+    color: #666;
+  }
+  
+  .status-toggle {
+    display: flex;
+    background-color: #f5f5f5;
+    border-radius: 8rpx;
+    padding: 5rpx;
     margin: 20rpx 0;
   }
   
-  .modal-body input {
-    border: 1px solid #ccc;
-    padding: 16rpx;
-    margin-bottom: 16rpx;
-    border-radius: 8rpx;
+  .toggle-item {
+    flex: 1;
+    text-align: center;
+    padding: 15rpx;
+    font-size: 28rpx;
+    color: #666;
+    transition: all 0.3s;
   }
   
+  .toggle-item.active {
+    background-color: #fff;
+    border-radius: 8rpx;
+    box-shadow: 0 2rpx 6rpx rgba(0, 0, 0, 0.1);
+    color: #3c9cff;
+    font-weight: bold;
+  }
+  
+  .modal-footer {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20rpx;
+  }
+  
+  .btn-cancel,
+  .btn-confirm {
+    width: 45%;
+    padding: 15rpx 0;
+    border-radius: 8rpx;
+    font-size: 28rpx;
+  }
+  
+  .btn-cancel {
+    background-color: #f5f5f5;
+    color: #333;
+  }
+  
+  .btn-confirm {
+    background-color: #007aff;
+    color: #fff;
+  }

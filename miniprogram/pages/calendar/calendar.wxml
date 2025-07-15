@@ -1,12 +1,15 @@
-<!-- /pages/calendar/calendar.wxml -->
-<view class="calendar-page">
-    <calendar bind:select="onDayClick" bind:longpress="onDayLongPress" />
+<calendar 
+  id="calendar"
+  binddayclick="onDaySelect" 
+  binddateLongPress="onDateLongPress"
+  bindeditTask="onEditTask"
+  binddeleteTask="onDeleteTask"
+/>
 
-    <task-list tasks="{{taskList}}" layout="double" showDesc="{{false}}" />
-
-
-    <modal visible="{{showModal}}" 
-            bind:cancel="onCancel" 
-            bind:confirm="onAddTask"
-            selectedDate="{{selectedDate}}" />
-</view>
+<modal
+    visible="{{showModal}}"
+    bindconfirm="onAddTask"
+    bindcancel="onCancel"
+    selected-date="{{selectedDate}}"
+    editing-task-id="{{editingTaskId}}"
+/>
