@@ -1,0 +1,16 @@
+<view class="container">
+  <view class="input-container">
+    <input 
+      class="input" 
+      placeholder="请输入问题" 
+      value="{{inputText}}" 
+      bindinput="onInput"
+      bindconfirm="sendMessage" 
+    />
+    <button class="send-button" bindtap="sendMessage">发送</button>
+  </view>
+  
+  <scroll-view class="response-container" scroll-y>
+    <text>{{responseText}}</text>
+  </scroll-view>
+</view>

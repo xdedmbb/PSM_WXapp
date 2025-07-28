@@ -1,0 +1,55 @@
+.container {
+  padding: 40rpx;
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  box-sizing: border-box;
+}
+
+.input-container {
+  display: flex;
+  align-items: center;
+  margin-bottom: 40rpx;
+}
+
+.input {
+  flex: 1;
+  height: 80rpx;
+  padding: 0 20rpx;
+  border: 1rpx solid #e0e0e0;
+  border-radius: 12rpx;
+  font-size: 30rpx;
+  background-color: #fafafa;
+  margin-right: 20rpx;
+}
+
+.send-button {
+  background-color: #007aff;
+  color: #fff;
+  border-radius: 12rpx;
+  font-size: 34rpx;
+  height: 80rpx;
+  line-height: 80rpx;
+  padding: 0 30rpx;
+}
+
+.response-container {
+  flex: 1;
+  overflow-y: auto;
+  border: 1rpx solid #e0e0e0;
+  border-radius: 12rpx;
+  padding: 20rpx;
+  background-color: #fafafa;
+  font-size: 30rpx;
+}
+/* 添加滚动动画 */
+.response-container {
+  transition: all 0.3s ease;
+  overflow-anchor: auto;
+}
+
+/* 添加加载状态样式 */
+.loading-text {
+  color: #999;
+  font-style: italic;
+}
