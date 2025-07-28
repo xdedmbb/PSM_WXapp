@@ -59,3 +59,46 @@ export async function requestApi(url, method = 'GET', data) {
     throw error;
   }
 }
+// 新增 Dify API 请求函数
+// 修改后的callDifyAPI函数，使用普通HTTP请求
+export async function callDifyAPI(inputText: string): Promise<string> {
+  const apiUrl = 'http://localhost/v1/chat-messages';
+  const apiKey = 'app-7BugNGRTqg7DR7oASsUj8u6P';
+
+  return new Promise((resolve, reject) => {
+    wx.request({
+      url: apiUrl,
+      method: 'POST',
+      header: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${apiKey}`
+      },
+      data: {
+        inputs: {},
+        // 关键修改：从streaming改为blocking模式
+        response_mode: "blocking",
+        conversation_id: "",
+        user: "abc-123",
+        query: inputText,
+        model: "llama3", 
+      },
+      success: (res) => {
+        if (res.statusCode === 200) {
+          // Dify API在blocking模式下直接返回完整的JSON响应
+          const responseData = res.data as any;
+          if (responseData && responseData.answer) {
+            resolve(responseData.answer);
+          } else {
+            reject(new Error('无法解析API响应'));
+          }
+        } else {
+          const error = new Error(res.data?.message || `API错误 (${res.statusCode})`);
+          reject(error);
+        }
+      },
+      fail: (err) => {
+        reject(new Error('网络请求失败'));
+      }
+    });
+  });
+}

@@ -6,7 +6,8 @@
     "pages/calendar/calendar",
     "pages/user/user",
     "pages/statistics/statistics",
-    "pages/tag/tag"
+    "pages/tag/tag",
+    "pages/aiAssistant/aiAssistant"
   ],
   "window": {
     "navigationBarBackgroundColor": "#ffffff",
@@ -44,6 +45,10 @@
         "text": "我的",
         "iconPath": "assets/tab/user.png",
         "selectedIconPath": "assets/tab/user_active.png"
+      },
+      {
+        "pagePath": "pages/aiAssistant/aiAssistant",
+        "text": "AI 助手"
       }
     ]
   },
