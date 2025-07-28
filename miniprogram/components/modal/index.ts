@@ -1,3 +1,5 @@
+import { requestApi } from '../../utils/api';
+
 Component({
     properties: {
       visible: {
@@ -27,9 +29,24 @@ Component({
     },
     
     observers: {
-      'visible, editingTaskId': function(visible, editingTaskId) {
+      'visible, editingTaskId': async function(visible, editingTaskId) {
         if (visible && editingTaskId) {
-          this.loadTaskDetails();
+          try {
+            const res: any = await requestApi(`/${editingTaskId}`, 'GET');
+            const task = res; // 修改这里，直接使用res
+            this.setData({
+              title: task.title,
+              description: task.description || '',
+              startDate: task.startTime ? task.startTime.split('T')[0] : this.formatDate(new Date()),
+              startTime: task.startTime ? task.startTime.substr(11, 5) : this.formatTime(new Date()),
+              endDate: task.endTime ? task.endTime.split('T')[0] : this.formatDate(new Date()),
+              endTime: task.endTime ? task.endTime.substr(11, 5) : this.formatTime(new Date()),
+              category: task.category || '',
+              completed: task.status === 1
+            });
+          } catch (error) {
+            wx.showToast({ title: '加载任务详情失败', icon: 'none' });
+          }
         } else if (visible) {
           const now = new Date();
           const dateStr = this.formatDate(now);
@@ -83,24 +100,6 @@ Component({
           category,
           completed
         });
-      },
-      
-      loadTaskDetails() {
-        const allTasks = wx.getStorageSync('tasks') || [];
-        const task = allTasks.find(t => t.id === this.data.editingTaskId);
-        
-        if (task) {
-          this.setData({
-            title: task.title,
-            description: task.description || '',
-            startDate: task.startDate || this.formatDate(new Date()),
-            startTime: task.startTime || this.formatTime(new Date()),
-            endDate: task.endDate || this.formatDate(new Date()),
-            endTime: task.endTime || this.formatTime(new Date()),
-            category: task.category || '',
-            completed: task.completed || false
-          });
-        }
       },
       
       formatDate(date) {

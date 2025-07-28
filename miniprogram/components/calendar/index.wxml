@@ -21,8 +21,8 @@
   <view class="task-list-container">
     <view class="section-title">{{selectedDate}}的任务</view>
     <view wx:if="{{selectedDateTasks.length > 0}}">
-      <block wx:for="{{selectedDateTasks}}" wx:key="id">
-        <view class="task-card" data-id="{{item.id}}">
+      <block wx:for="{{selectedDateTasks}}" wx:key="taskId">
+        <view class="task-card" data-id="{{item.taskId}}">
           <view class="task-title">{{item.title}}</view>
           <view class="task-desc" wx:if="{{item.description}}">{{item.description}}</view>
           <view class="task-datetime" wx:if="{{item.startTime || item.endTime}}">
@@ -31,11 +31,11 @@
           <view class="task-category" wx:if="{{item.category}}">分类: {{item.category}}</view>
           
           <view class="task-actions">
-            <view class="task-status {{item.completed ? 'completed' : 'uncompleted'}}">
-              {{item.completed ? '已完成' : '未完成'}}
+            <view class="task-status {{item.status === 1 ? 'completed' : 'uncompleted'}}">
+              {{item.status === 1 ? '已完成' : '未完成'}}
             </view>
-            <view class="edit-btn" bindtap="editTask" data-id="{{item.id}}">编辑</view>
-            <view class="delete-btn" bindtap="deleteTask" data-id="{{item.id}}">删除</view>
+            <view class="edit-btn" bindtap="editTask" data-id="{{item.taskId}}">编辑</view>
+            <view class="delete-btn" bindtap="deleteTask" data-id="{{item.taskId}}">删除</view>
           </view>
         </view>
       </block>

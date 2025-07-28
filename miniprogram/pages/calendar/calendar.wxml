@@ -1,3 +1,4 @@
+<!-- personal_task_manage/miniprogram/pages/calendar/calendar.wxml -->
 <calendar 
   id="calendar"
   binddayclick="onDaySelect" 
@@ -5,6 +6,8 @@
   bindeditTask="onEditTask"
   binddeleteTask="onDeleteTask"
 />
+
+<task-list tasks="{{selectedDateTasks}}" layout="single" showDesc="true" />
 
 <modal
     visible="{{showModal}}"

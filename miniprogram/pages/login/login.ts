@@ -19,9 +19,8 @@ Page({
                 this.setData({ isLoading: false })
                 return
               }
-  
               wx.request({
-                url: 'http://192.168.1.71:9663/api/user/wxLogin',
+                url: 'http://localhost:9663/api/user/wxLogin',
                 method: 'POST',
                 data: {
                   code,
@@ -43,8 +42,7 @@ Page({
                     wx.switchTab({ url: '/pages/dashboard/dashboard' })
                   } else {
                     wx.removeStorageSync('token')
-                    wx.showToast({ title: (res.data && res.data.message) ? res.data.message : '登录失败'
-                    , icon: 'none' })
+                    wx.showToast({ title: (res.data && res.data.message) ? res.data.message : '登录失败', icon: 'none' })
                   }
                 },
                 fail: () => {
@@ -69,4 +67,3 @@ Page({
       })
     }
   })
-  
