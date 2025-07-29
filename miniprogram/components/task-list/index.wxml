@@ -1,14 +1,14 @@
 <view class="task-grid">
-    <block wx:for="{{tasks}}" wx:key="id" wx:for-item="item">
-    <view class="task-card {{layout}}">
+    <block wx:for="{{tasks}}" wx:key="id" wx:for-item="item" wx:for-index="index">
+    <view class="task-card {{layout}}" bindtap="handleTaskClick" data-index="{{index}}">
         <view class="task-title">{{item.title}}</view>
 
-        <!-- 双列隐藏描述和时间，这里靠 showDesc 控制，不显示 -->
+        <!-- 优化描述和时间的显示逻辑 -->
         <view class="task-desc" wx:if="{{showDesc && item.description}}">
-        {{item.description}}
+            {{item.description}}
         </view>
-        <view class="task-datetime" wx:if="{{showDesc && item.date && item.time}}">
-        {{item.date}} {{item.time}}
+        <view class="task-datetime" wx:if="{{showDesc && item.date}}">
+            {{item.date}}{{item.time ? ' ' + item.time : ''}}
         </view>
 
         <view class="task-bottom">
@@ -16,15 +16,17 @@
                 {{item.status ? '已完成' : '未完成'}}
             </view>
 
-            <view class="tag" wx:if="{{item.tags.length > 0}}">
+            <!-- 优化标签显示逻辑 -->
+            <view class="tag" wx:if="{{item.tags && item.tags.length > 0}}">
                 {{item.tags[0]}}
             </view>
         </view>
     </view>
     </block>
 
-
     <view wx:if="{{tasks.length === 0}}" class="empty-tip">
-        暂无任务，请前往日历页长按添加。    
+        暂无任务，请前往日历页长按添加。
     </view>
 </view>
+
+
