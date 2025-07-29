@@ -12,8 +12,8 @@
         </view>
 
         <view class="task-bottom">
-            <view class="task-status {{item.completed ? '' : 'unfinished'}}">
-                {{item.completed ? '已完成' : '未完成'}}
+            <view class="task-status {{item.status ? '' : 'unfinished'}}">
+                {{item.status ? '已完成' : '未完成'}}
             </view>
 
             <view class="tag" wx:if="{{item.tags.length > 0}}">

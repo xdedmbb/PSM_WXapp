@@ -25,16 +25,3 @@ export const request = (url: string, method: 'GET' | 'POST' | 'PUT' | 'DELETE' =
       });
     });
   };
-  
-  // 获取用户任务列表
-  export const getUserTasks = (userId: number, date?: string) => {
-    let url = `/api/tasks/user/${userId}`;
-    
-    // 如果有日期参数，添加到URL
-    if (date) {
-      url += `?date=${date}`;
-    }
-    
-    return request(url, 'GET');
-  };
-  
