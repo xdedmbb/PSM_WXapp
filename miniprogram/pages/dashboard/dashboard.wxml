@@ -1,19 +1,4 @@
-<!-- 加载状态显示 -->
-<view wx:if="{{loading}}" class="loading">
-  <van-loading type="spinner" size="24" />
-  <text>加载任务中...</text>
+<view class="container">
+  <view class="header">今日事务</view>
 </view>
-
-<!-- 错误信息显示 -->
-<view wx:if="{{error && !loading}}" class="error-message">
-  {{error}}
-  <button bindtap="loadTasks">重试</button>
-</view>
-
-<!-- 任务列表组件，将API获取的tasks传递过去 -->
-<task-list 
-  wx:if="{{!loading && !error}}"
-  tasks="{{tasks}}" 
-  bind:onTaskTap="onTaskTap"
-  bind:onTaskComplete="onTaskComplete"
-/>
+<task-list tasks="{{taskList}}" layout="single" showDesc="true" />  

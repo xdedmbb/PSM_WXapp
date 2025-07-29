@@ -1,47 +1,30 @@
-<view class="task-list">
-  <!-- 任务为空时显示 -->
-  <view wx:if="{{tasks.length === 0}}" class="empty-tip">
-    暂无任务
-  </view>
-  
-  <!-- 任务列表 -->
-  <view wx:else class="tasks-container">
-    <view 
-      wx:for="{{tasks}}" 
-      wx:key="taskId" 
-      class="task-item {{task.status === 1 ? 'completed' : ''}}"
-      bindtap="onTaskTap"
-      data-taskid="{{item.taskId}}"
-    >
-      <!-- 任务状态复选框 -->
-      <view class="task-status">
-        <checkbox 
-          checked="{{task.status === 1}}" 
-          bindchange="onTaskComplete"
-          data-taskid="{{item.taskId}}"
-        />
-      </view>
-      
-      <!-- 任务内容 -->
-      <view class="task-content">
-        <view class="task-title {{getPriorityClass(item.priority)}}">
-          {{item.title}}
+<view class="task-grid">
+    <block wx:for="{{tasks}}" wx:key="id" wx:for-item="item">
+    <view class="task-card {{layout}}">
+        <view class="task-title">{{item.title}}</view>
+
+        <!-- 双列隐藏描述和时间，这里靠 showDesc 控制，不显示 -->
+        <view class="task-desc" wx:if="{{showDesc && item.description}}">
+        {{item.description}}
         </view>
-        
-        <view class="task-meta">
-          <!-- 任务时间 -->
-          <view class="task-time">
-            {{formatTime(item.startTime)}} - {{formatTime(item.endTime)}}
-          </view>
-          
-          <!-- 任务标签 -->
-          <view class="task-tags">
-            <view wx:for="{{item.tags}}" wx:key="tagId" class="tag">
-              {{item.tagName}}
+        <view class="task-datetime" wx:if="{{showDesc && item.date && item.time}}">
+        {{item.date}} {{item.time}}
+        </view>
+
+        <view class="task-bottom">
+            <view class="task-status {{item.completed ? '' : 'unfinished'}}">
+                {{item.completed ? '已完成' : '未完成'}}
             </view>
-          </view>
+
+            <view class="tag" wx:if="{{item.tags.length > 0}}">
+                {{item.tags[0]}}
+            </view>
         </view>
-      </view>
     </view>
-  </view>
+    </block>
+
+
+    <view wx:if="{{tasks.length === 0}}" class="empty-tip">
+        暂无任务，请前往日历页长按添加。    
+    </view>
 </view>

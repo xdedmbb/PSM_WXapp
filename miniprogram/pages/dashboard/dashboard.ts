@@ -36,7 +36,7 @@ Page({
       console.info(userId)
       
       this.setData({
-        tasks: tasks,
+        taskList: tasks,
         loading: false
       });
     } catch (err) {
