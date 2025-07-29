@@ -2,7 +2,7 @@ import { getUserTasks } from '../../utils/request';
 
 Page({
   data: {
-    userId: 1001, // 实际项目中应该从登录信息中获取
+    userId: wx.getStorageSync('user')?.userId || 0, // Fallback to 0 if not found
     currentDate: '',
     tasks: [] as any[], // 任务列表数据
     loading: false, // 加载状态
@@ -31,6 +31,9 @@ Page({
       const { userId, currentDate } = this.data;
       // 调用API获取任务列表
       const tasks = await getUserTasks(userId, currentDate);
+      
+      console.info('获取任务列表:', tasks);
+      console.info(userId)
       
       this.setData({
         tasks: tasks,

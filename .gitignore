@@ -12,3 +12,6 @@ $RECYCLE.BIN/
 
 # Node.js
 node_modules/
+.continue/prompts/new-prompt.yaml
+.continue/rules/ChatRules.md
+.continue/rules/CodeRules.md
