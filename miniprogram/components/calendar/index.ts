@@ -1,5 +1,4 @@
-const { requestApi } = require('../../utils/api');
-
+import { getUserTasks } from '../../components/services/taskService';
 Component({
     data: {
         year: 0,
@@ -88,45 +87,37 @@ Component({
             this.loadTasksForDate(this.data.selectedDate);
         },
         
-        // personal_task_manage/miniprogram/components/calendar/index.ts
+// personal_task_manage/miniprogram/components/calendar/index.ts
 async loadTasksForDate(date) {
     try {
-      const app = getApp();
-      const userId = app.globalData.user?.userId || 1;
+
+        const userId = wx.getStorageSync('user')?.userId || 0;
+        const tasks = await getUserTasks(userId, new Date(date));
+        console.log('组件加载任务，当前用户ID:', userId);
+        // 确保返回的是数组
+        if (!Array.isArray(tasks)) {
+            throw new Error('任务数据格式不正确，期望是数组类型');
+        }
+    
+        // 格式化日期时间显示
+        const formattedTasks = tasks.map(task => ({
+            ...task,
+            dateFormatted: task.startTime ? task.startTime.split('T')[0] : '',
+            timeFormatted: task.startTime ? task.startTime.substr(11, 5) : ''
+        }));
   
-      console.log('传递的日期:', date); // 确认日期格式
-  
-      const url = `/user/${userId}?date=${date}`;
-      console.log('请求的URL:', url);
-  
-      // 调用API获取任务
-      const tasks = await requestApi(url);
-      console.log('API 返回的数据:', tasks);
-  
-      // 确保返回的是数组
-      if (!Array.isArray(tasks)) {
-        throw new Error('任务数据格式不正确，期望是数组类型');
-      }
-  
-      // 格式化日期时间显示
-      const formattedTasks = tasks.map(task => ({
-        ...task,
-        dateFormatted: task.startTime ? task.startTime.split('T')[0] : '',
-        timeFormatted: task.startTime ? task.startTime.substr(11, 5) : ''
-      }));
-  
-      // 更新组件数据
-      this.setData({ 
-        selectedDateTasks: formattedTasks
-      });
+        // 更新组件数据
+        this.setData({ 
+            selectedDateTasks: formattedTasks
+        });
   
     } catch (error) {
-      console.error('加载任务失败:', error);
-      wx.showToast({ 
-        title: '加载任务失败: ' + error.message, 
-        icon: 'none',
-        duration: 2000
-      });
+        console.error('加载任务失败:', error);
+        wx.showToast({ 
+            title: '加载任务失败: ' + error.message, 
+            icon: 'none',
+            duration: 2000
+        });
     }
   },
         

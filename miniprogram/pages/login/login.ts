@@ -47,6 +47,8 @@ Page({
           }
           if (user) {
             wx.setStorageSync('user', user);
+            console.log("存入wx.getStorageSync('user')：",wx.getStorageSync('user'));
+
             console.log('User data stored in storage');
           }
           wx.showToast({ title: '登录成功' });

@@ -62,7 +62,7 @@ export async function requestApi(url, method = 'GET', data) {
 // 新增 Dify API 请求函数
 // 修改后的callDifyAPI函数，使用普通HTTP请求
 export async function callDifyAPI(inputText: string): Promise<string> {
-  const apiUrl = 'http://localhost/v1/chat-messages';
+  const apiUrl = 'http://192.168.13.58/v1/chat-messages';
   const apiKey = 'app-7BugNGRTqg7DR7oASsUj8u6P';
 
   return new Promise((resolve, reject) => {

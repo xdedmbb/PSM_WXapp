@@ -1,5 +1,4 @@
-const { requestApi } = require('../../utils/api');
-
+import { request } from "../../utils/request";
 Page({
     data: {
         selectedDate: '',
@@ -7,27 +6,19 @@ Page({
         showModal: false,
         editingTaskId: null,
         selectedDateTasks: [],
-        currentUser: null
+        currentUser: wx.getStorageSync('user')|| 0
     },
 
     onLoad() {
         // 获取当前日期
         const today = new Date();
-        const todayStr = today.toISOString().split('T')[0]; // 格式化为YYYY-MM-DD
-        
-        // 获取用户信息（这里模拟用户数据）
-        const app = getApp();
-        const user = app.globalData.user || { 
-            userId: 1, // 默认用户ID
-            username: 'testUser' 
-        };
-        
+        const todayStr = today.toISOString().split('T')[0]; // 格式化为YYYY-MM-DD 
         this.setData({ 
             today: todayStr,
             selectedDate: todayStr,
-            currentUser: user
         });
-        
+        console.log('当前日期:', todayStr);
+        console.log('当前用户:', this.data.currentUser);
         // 加载今日任务
         this.loadTasksForDate(todayStr);
     },
@@ -64,15 +55,19 @@ Page({
 // 添加/更新任务
 async loadTasksForDate(date) {
     try {
-      const app = getApp();
-      const userId = app.globalData.user?.userId || 1;
-  
-      const url = `/user/${userId}?date=${date}`;
+      const { currentUser } = this.data;
+      const userId = currentUser?.userId;
+      console.log('当前用户:', currentUser);
+      if (!userId) {
+          throw new Error('用户未登录或用户ID无效');
+      }
+      console.log('加载任务，当前用户ID:', userId);
+      const url = `/api/tasks/user/${userId}?date=${date}`;
       console.log('请求的日期:', date);
       console.log('请求的URL:', url);
   
       // 调用API获取任务
-      const tasks = await requestApi(url);
+      const tasks = await request(url, 'GET');
       console.log('API 返回的数据:', tasks);
   
       // 确保返回的是数组
